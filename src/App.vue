@@ -1,6 +1,19 @@
 <script setup lang="ts">
 import topBar from "@/components/topBar.vue"
 import Card from "@/components/Card/Card.vue"
+import { onMounted } from "vue";
+import { useLanguageStore } from '@/store/index'; 
+import { useI18n } from "vue-i18n";
+const { locale } = useI18n();
+const languageStore = useLanguageStore(); 
+
+onMounted(()=>{
+  if(languageStore.isZhCN){
+    locale.value = 'zh'
+  }else{
+    locale.value = 'en'
+  }
+})
 </script>
 
 <template>
@@ -8,6 +21,7 @@ import Card from "@/components/Card/Card.vue"
     <el-scrollbar style="height:100%">
       <topBar></topBar>
       <Card></Card>
+      <CarouselList></CarouselList>
       <div>
        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel, laudantium inventore ab sit quia aut. Non, accusamus cupiditate ex voluptas tempore nemo illum porro, aliquam reprehenderit, fugit suscipit. Dolores, ipsa.
        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel, laudantium inventore ab sit quia aut. Non, accusamus cupiditate ex voluptas tempore nemo illum porro, aliquam reprehenderit, fugit suscipit. Dolores, ipsa.

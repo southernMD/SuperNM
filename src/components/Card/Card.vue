@@ -1,16 +1,20 @@
 <script setup lang="ts">
+import type { CardRotateElement, CardRotateElementStringValue } from '@/types/Card';
 import { onMounted, ref } from 'vue';
-import MessageBox from './MessageBox.vue';
+
 
 // 定义 canvas 类型
-const labels:CardRotateElementStringValue[] = [
-  {value:'大',scale:2}, // 文本
-  {value:'牛'},
-  {value:'马'},
+const labels: CardRotateElementStringValue[] = [
+  { value: '超', scale: 5 },
+  { value: '级', scale: 5 },
+  { value: '大', scale: 2 }, // 文本
+  { value: '牛' },
+  { value: '马' },
   // 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg', // 图片链接
   // 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iIj4KICA8Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI1MCIgc3R5bGU9ImZpbGw6cmVkOyIvPgo8L3N2Zz4K', // Base64 SVG
-  {value:'/vite.svg',scale:1.5}
+  { value: '/vite.svg', scale: 1.5 }
 ]; // 提取 labels 到外部
+
 const labelsLoad: Array<CardRotateElement> = []
 const drawCircles = (canvas: HTMLCanvasElement, rotationAngle: number) => {
   const ctx = canvas.getContext('2d')!;
@@ -70,7 +74,7 @@ const draw = () => {
     // 为每个 label 创建对应的 radius 和角速度
     labelsLoad.forEach((_, index) => {
       if (radii[index] !== undefined) {
-        console.log(lastBigCircleRadius - bigCircleRadius);
+        // console.log(lastBigCircleRadius - bigCircleRadius);
         radii[index] = radii[index] - lastBigCircleRadius + bigCircleRadius;
       } else {
         const radius = Math.random() * (bigCircleRadius - smallCircleRadius) + smallCircleRadius; // 随机生成半径
@@ -135,8 +139,7 @@ const animate = (centerX: number, centerY: number) => {
 
   drawLabels(); // 开始绘制
 };
-
-onMounted(async () => {
+const init = async () => {
   const loadImages = labels.map(label => {
     return new Promise<CardRotateElement>((resolve) => {
       const img = new Image();
@@ -151,18 +154,20 @@ onMounted(async () => {
         resolve({ value: img, scale: label.scale ?? 1 });
       };
       img.onerror = () => {
-        clearTimeout(timeoutId); // Clear the timeout if there's an error
+        clearTimeout(timeoutId);
         console.log('图片加载失败', label);
         resolve(label); // 图片加载失败，直接完成
       };
     });
   });
-
-  labelsLoad.push(...await Promise.all(loadImages)); // 等待所有图片加载完成
+  labelsLoad.push(...await Promise.all(loadImages));
+}
+onMounted(async () => {
+  await init()
   draw();
-  canvas.value?.addEventListener("contextmenu", (e) => {
-    e.preventDefault();
-  });
+  // canvas.value?.addEventListener("contextmenu", (e) => {
+  //   e.preventDefault();
+  // });
 });
 
 window.addEventListener('resize', draw);
@@ -185,7 +190,6 @@ window.addEventListener('resize', draw);
   align-items: center;
   flex-direction: column;
   position: relative;
-  margin-top: 100px;
 }
 
 .canvas {

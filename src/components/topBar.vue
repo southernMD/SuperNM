@@ -1,16 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-
+import { useI18n} from 'vue-i18n';
+import { useLanguageStore } from '@/store/index'; 
+const { locale,t,tm } = useI18n();
 const drawerVisible = ref(false);
 const isDesktop = ref(window.innerWidth > 768); // 判断是否为桌面设备
-
-// 定义导航项数组
-const navArr = [
-  { key: "topNav.b1" },
-  { key: "topNav.b2" },
-  { key: "topNav.b3" },
-  { key: "topNav.b4" }
-];
+const languageStore = useLanguageStore(); 
 
 window.addEventListener('resize', () => {
   isDesktop.value = window.innerWidth > 768; // 更新判断
@@ -18,22 +13,27 @@ window.addEventListener('resize', () => {
     drawerVisible.value = false; // 如果是桌面设备，则关闭抽屉
   }
 });
+
+function changeLanguage() {
+  languageStore.toggleLanguage();
+  locale.value = locale.value === 'zh' ? 'en' : 'zh';
+}
 </script>
 
 <template>
   <header class="top-bar">
     <div class="nav-links">
-      <a class="logo">{{ $t("name") }}</a>
-      <div v-for="(item, index) in navArr" :key="index">
-        <a href="#">{{ $t(item.key) }}</a>
+      <a class="logo">{{ t("name") }}</a>
+      <div v-for="(item, index) in tm('topNav')" :key="index">
+        <a href="#">{{ item }}</a>
       </div>
     </div>
     <i class="icon-caidan iconfont" style="cursor: pointer;" v-if="!isDesktop" @click="drawerVisible = true"></i>
-    <el-drawer v-model="drawerVisible" :title="$t('name')" size="50%" append-to-body direction="ltr" :show-close="false">
+    <el-drawer v-model="drawerVisible" :title="t('name')" size="50%" append-to-body direction="ltr" :show-close="false">
       <div class="drawer-content">
         <div class="nav-list-phone">
-          <div class="nav" v-for="(item, index) in navArr" :key="index">
-            <span>{{ $t(item.key) }}</span>
+          <div class="nav" v-for="(item, index) in tm('topNav')" :key="index">
+            <span>{{ item }}</span>
           </div>
         </div>
       </div>
@@ -43,6 +43,10 @@ window.addEventListener('resize', () => {
       <a href="#"><i class="iconfont icon-tuite"></i></a>
       <a href="#"><i class="iconfont icon-bilibili"></i></a>
       <a href="#"><i class="iconfont icon-twitch"></i></a>
+      <a href="javascript:;">
+        <i class="iconfont icon-a-zhongyingwenqiehuanzhong" v-if="!languageStore.isZhCN" @click="changeLanguage()"></i>
+        <i class="iconfont icon-a-zhongyingwenqiehuanying" v-else @click="changeLanguage()"></i>
+      </a>
     </div>
   </header>
 </template>

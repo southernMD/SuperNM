@@ -1,9 +1,21 @@
 {
     "name": "southernMD",
-    "topNav":{
-        "b1":"one",
-        "b2":"two",
-        "b3":"three",
-        "b4":"four"
+    "topNav":["one","two","three","four"],
+    "messageBox":{
+        "list":[
+            {"title":"title1","hash":"#"},
+            {"title":"title2","hash":"#"},
+            {"title":"title3","hash":"#"},
+            {"title":"title4","hash":"#"},
+            {"title":"title5","hash":"#"}
+        ]
+    },
+    "carouselList":{
+        "ms1":"I share stories about #NM, #superNM, #bigNM and #superBigNM on the Internet.",
+        "ms2":{
+            "numberBefore":"My stories have attracted",
+            "numberEnd":"followers."
+        },
+        "ms3":"There are countless ways to tell a story about the world, this is mine."
     }
 }

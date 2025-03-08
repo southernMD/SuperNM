@@ -9,10 +9,14 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Card: typeof import('./src/components/Card/Card.vue')['default']
+    CarouselList: typeof import('./src/components/CarouselList/CarouselList.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElDrawer: typeof import('element-plus/es')['ElDrawer']
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
+    HelloWorld: typeof import('./src/components/CarouselList/Carousel/HelloWorld.vue')['default']
     MessageBox: typeof import('./src/components/Card/MessageBox.vue')['default']
+    ScrollingCard: typeof import('./src/components/CarouselList/Carousel/ScrollingCard.vue')['default']
+    ScrollingCardList: typeof import('./src/components/CarouselList/Carousel/ScrollingCardList.vue')['default']
     TopBar: typeof import('./src/components/topBar.vue')['default']
   }
 }
