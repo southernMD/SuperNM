@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { CardRotateElement, CardRotateElementStringValue } from '@/types/Card';
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, type Ref } from 'vue';
 
 
 // 定义 canvas 类型
@@ -165,17 +165,24 @@ const init = async () => {
 onMounted(async () => {
   await init()
   draw();
-  // canvas.value?.addEventListener("contextmenu", (e) => {
-  //   e.preventDefault();
-  // });
 });
+const cardRef = ref<HTMLDivElement>()
+onMounted(() => {
+  const intersectionObserver = new IntersectionObserver((entries) => {
+    if (entries[0].intersectionRatio <= 0) return;
+    cardRef.value!.style.transform = 'translateY(0)'
+    intersectionObserver.disconnect()
+  });
+  // 开始监听
+  intersectionObserver.observe(cardRef.value!);
+})
 
 window.addEventListener('resize', draw);
 
 </script>
 
 <template>
-  <div class="card">
+  <div class="card" ref="cardRef">
     <canvas class="canvas" ref="canvas"></canvas>
     <MessageBox></MessageBox>
   </div>
@@ -190,6 +197,8 @@ window.addEventListener('resize', draw);
   align-items: center;
   flex-direction: column;
   position: relative;
+  transition: transform 1s ease-out;
+  transform: translateY(50px);
 }
 
 .canvas {

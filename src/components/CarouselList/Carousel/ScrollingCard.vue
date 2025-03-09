@@ -4,16 +4,19 @@ defineProps<{
   followers: number;
   description: string;
   gradient?: string;
+  link?: string
 }>();
 </script>
 
 <template>
   <div class="card" ref="cardRef" :style="{ background: gradient || 'linear-gradient(45deg, #42b883, #35495e)' }">
-    <h3>{{ platform }}</h3>
-    <div class="stats">
-      <span>{{ followers.toLocaleString() }} followers</span>
-    </div>
-    <p>{{ description }}{{ description }}{{ description }}{{ description }}</p>
+    <a :href="link ?? '#'" target="_blank">
+      <h3>{{ platform }}</h3>
+      <div class="stats">
+        <span>{{ followers.toLocaleString() }} followers</span>
+      </div>
+      <p>{{ description }}</p>
+    </a>
   </div>
 </template>
 
@@ -27,6 +30,7 @@ defineProps<{
   color: white;
   margin: 10px;
   transition: transform 0.3s;
+  cursor: pointer;
 }
 
 .card:hover {

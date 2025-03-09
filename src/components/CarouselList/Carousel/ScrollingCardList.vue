@@ -7,12 +7,7 @@ import { nextTick, ref, type Ref } from 'vue';
 import { onMounted } from 'vue';
 
 const props = defineProps<{
-  cards: Array<{
-    platform: string;
-    followers: number;
-    description: string;
-    gradient?: string;
-  }>;
+  cards: Array<scrollingCard>;
   direction?: 'left' | 'right';
   speed?: number;
 }>();
@@ -23,7 +18,7 @@ const swiperConfig = {
   modules: [Autoplay],
   loop: true,
   speed: props.speed,
-  allowTouchMove: true,
+  allowTouchMove: false,
   autoplay: {
     delay: 0,
     disableOnInteraction: false,
@@ -59,7 +54,7 @@ const updateCardShow = () => {
   const width = containerRef.value!.clientWidth;
   cardShow.value.push(...structuredClone(props.cards));
   nextTick(() => {
-    while (ScrollingCardsRef.value[0]?.$el.clientWidth * cardShow.value.length < width || cardShow.value.length < 6) {
+    while (ScrollingCardsRef.value[0]?.$el.clientWidth * cardShow.value.length < width || cardShow.value.length < 8) {
       cardShow.value.push(...structuredClone(props.cards));
     }
   });
