@@ -1,13 +1,18 @@
 <script setup lang="ts">
 import type { MaskCard } from '@/types/Work';
 
-defineProps<{
+withDefaults(defineProps<{
   overlayDes: Omit<MaskCard, 'msg'>;
   animation: 'levelMove' | 'rotate'
-}>();
+  padding?: string
+}>(),{
+  padding: '24px'
+})
 </script>
 <template>
-  <div class="hover-card">
+  <div class="hover-card"
+  :style="{ padding }"
+  >
     <div class="card-content">
       <slot></slot>
     </div>
@@ -16,7 +21,7 @@ defineProps<{
       'rotate': animation === 'rotate'
     }">
       <div class="overlay-content">
-        <p>{{ overlayDes }}</p>
+        <p v-dompurify-html="overlayDes"></p>
       </div>
     </div>
   </div>
@@ -27,11 +32,13 @@ defineProps<{
   box-sizing: border-box;
   background: white;
   border-radius: 20px;
-  padding: 24px;
   position: relative;
   overflow: hidden;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
   height: 100%;
+  min-height: 150px;
+  width: auto;
+  min-width: 200px;
 }
 
 :slotted(.txt) {
@@ -79,7 +86,7 @@ defineProps<{
 }
 
 .levelMove:hover {
-  animation: levelMove .3s ease;
+  animation: levelMove .5s ease;
   opacity: 1;
 }
 
@@ -96,7 +103,7 @@ defineProps<{
 }
 
 .rotate:hover{
-  animation: rotate .3s ease;
+  animation: rotate .5s ease;
   opacity: 1;
 }
 
@@ -119,5 +126,16 @@ defineProps<{
   opacity: 0.9;
   font-size: 1rem;
   line-height: 1.5;
+}
+.card-content{
+  width: 100%;
+  height: 100%;
+}
+:slotted(.img){
+  width: 100%;
+  height: 100%;
+  min-height:250px;
+  background-size: cover;
+  background-position: center;
 }
 </style>

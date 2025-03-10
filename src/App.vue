@@ -26,6 +26,9 @@ onMounted(() => {
       <CarouselList></CarouselList>
       <WorkCardBox></WorkCardBox>
       <Skills></Skills>
+      <Game></Game>
+      <Video></Video>
+      <C></C>
       <div>
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel, laudantium inventore ab sit quia aut. Non,
         accusamus cupiditate ex voluptas tempore nemo illum porro, aliquam reprehenderit, fugit suscipit. Dolores, ipsa.
@@ -147,5 +150,8 @@ onMounted(() => {
 
 .el-drawer__header {
   margin-bottom: 10px;
+}
+body{
+  background: #f5f5f5;
 }
 </style>

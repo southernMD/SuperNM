@@ -19,5 +19,22 @@
         "ms3":"There are countless ways to tell a story about the world, this is mine.",
         "ms4":"Storytelling is my passion because I've been profoundly shaped by the stories of others.",
         "ms5":"Discover my inspirations here."
+    },
+    "gameList":{
+        "left":{
+            "highTitle":"Games ",
+            "title":"I made in GameJam"
+        },
+        "right":{
+            "highTitle":"Games ",
+            "title":"I made in Companies"
+        }
+    },
+    "video":{
+        "title":"Game related Video Essay Creato",
+        "followers":"followers",
+        "views":"views",
+        "description":"I'm not only playing games. I treat video games as an experiment. Through games, I study behavioral psychology, product design, decision making, and aesthetics.",
+        "topicsTitle":"Topics I touched or planed to touch:"
     }
 }

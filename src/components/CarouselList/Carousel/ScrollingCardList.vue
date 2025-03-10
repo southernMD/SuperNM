@@ -18,7 +18,8 @@ const swiperConfig = {
   modules: [Autoplay],
   loop: true,
   speed: props.speed,
-  allowTouchMove: false,
+    spaceBetween: 20,
+    allowTouchMove: false,
   autoplay: {
     delay: 0,
     disableOnInteraction: false,
@@ -33,15 +34,12 @@ const swiperConfig = {
     },
     500:{
       slidesPerView: 3,
-      spaceBetween: 20,
     },
     750: {  //当屏幕宽度大于等于320
       slidesPerView: 3,
-      spaceBetween: 20,
     },
     1200:{
       slidesPerView: 4,
-      spaceBetween: 20,
     }
   }
 };

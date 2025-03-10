@@ -151,6 +151,7 @@ const handleMouseLeave = () => {
 .wrap {
     position: absolute;
     z-index: 2;
+    width: 80%;
 }
 .n{
     height: 100px;
@@ -167,7 +168,9 @@ const handleMouseLeave = () => {
 }
 
 .card-item {
-    width: 420px;
+    margin: 0 auto;
+    max-width: 420px;
+    min-width: 250px;
     height: 450px;
     border-radius: 20px;
     box-shadow: -1px 15px 30px -12px #000;

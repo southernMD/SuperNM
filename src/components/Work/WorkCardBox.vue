@@ -49,7 +49,6 @@ const experiences: WorkCard[] = [
                 icon: `<i class="iconfont icon-bilibili"></i>`,
                 descriptionColor: 'black',
                 children: [],
-                FDirection: 'row',
                 maskCard: [
                     {
                         overlayDes: "Lorem ipsum dolor sit amet consectetur adipisicing elit. ",

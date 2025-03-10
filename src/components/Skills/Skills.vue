@@ -119,9 +119,16 @@ const setSkillsBoxGrid = () => {
     if (width.value > 1000) {
         skillsBoxRef.value!.classList.add('skills-box-grid-more')
         skillsBoxRef.value!.classList.remove('skills-box-grid-less')
-    } else {
+        skillsBoxRef.value!.classList.remove('skills-box-grid-less-less')
+    } else if(width.value > 500) {
         skillsBoxRef.value!.classList.add('skills-box-grid-less')
         skillsBoxRef.value!.classList.remove('skills-box-grid-more')
+        skillsBoxRef.value!.classList.remove('skills-box-grid-less-less')
+    }else{
+        skillsBoxRef.value!.classList.add('skills-box-grid-less-less')
+        skillsBoxRef.value!.classList.remove('skills-box-grid-more')
+        skillsBoxRef.value!.classList.remove('skills-box-grid-less')
+
     }
 };
 
@@ -153,7 +160,7 @@ onMounted(() => {
     opacity: 0;
     transform: translateY(100px) scale(0.8);
     transition: all 1s ease-in-out;
-    height: 100vh;
+    height: auto;
 }
 
 .skills-box-show {
@@ -170,6 +177,12 @@ onMounted(() => {
 .skills-box-grid-less {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.skills-box-grid-less-less{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
     gap: 10px;
 }
 

@@ -11,14 +11,10 @@ export interface WorkCard{
 }
 export interface MaskCard{
     overlayDes:string
-    msg:normalText | imgDiv
+    msg:normalText | string
 }
 
 export interface normalText{
     title:string
     description:string
-}
-
-export interface imgDiv{
-    imgHTML:string
 }
