@@ -36,5 +36,28 @@
         "views":"播放量",
         "description":"我可不只是玩游戏。我把电子游戏当作一种实验。通过游戏，我研究行为心理学、产品设计、决策制定以及美学。",
         "topicsTitle":"我触及或计划触及的话题："
+    },
+    "chart":{
+        "stackChart":{
+            "title":"时间",
+            "description":"这就是我打发时间的方式。我最大的爱好是学习，因为我对几乎所有的事物都充满好奇。"
+        },
+        "space":{
+            "title":"处所",
+            "description":"这是我的旅行足迹。目前我住在",
+            "livePlace":"中国苏州"
+        },
+        "radar":[
+            {
+                "title": "电影",
+                "description": "统计我已经看过的电影类型",
+                "image": "https://placehold.co/600x400/png"
+              },
+              {
+                "title": "专辑",
+                "description": "统计我已经听过的专辑类型",
+                "image": "https://placehold.co/600x400/png"
+              }
+        ]
     }
 }

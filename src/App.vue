@@ -28,7 +28,7 @@ onMounted(() => {
       <Skills></Skills>
       <Game></Game>
       <Video></Video>
-      <C></C>
+      <ChartBox></ChartBox>
       <div>
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel, laudantium inventore ab sit quia aut. Non,
         accusamus cupiditate ex voluptas tempore nemo illum porro, aliquam reprehenderit, fugit suscipit. Dolores, ipsa.

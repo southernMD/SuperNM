@@ -1,32 +1,47 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import * as d3 from "d3";
+import { watch } from "vue";
 
+const props = withDefaults(defineProps<{
+    width: number
+    height: number
+}>(), {
+    width: 600,
+    height: 400
+})
 const chartRef = ref<SVGSVGElement | null>(null);
 
-onMounted(() => {
-    if (!chartRef.value) return;
-
-    const data = [
-        { age: -1, study: 0, game: 0, coding: 0, music: 0, social: 100 },
-        { age: 5, study: 50, game: 20, coding: 0, music: 3, social: 27 },
-        { age: 10, study: 40, game: 30, coding: 0, music: 5, social: 25 },
-        { age: 15, study: 35, game: 25, coding: 0, music: 7, social: 33 },
-        { age: 20, study: 30, game: 20, coding: 30, music: 10, social: 10 },
-        { age: 25, study: 20, game: 10, coding: 50, music: 15, social: 5 },
-        { age: 28, study: 20, game: 10, coding: 50, music: 15, social: 5 },
-    ];
-
-    const stack = d3.stack().keys(["study", "game", "coding", "music", "social"]);
+const svgWidth = ref(props.width)
+const svgHeight = ref(props.height)
+watch(()=>props.width, () => {
+    svgWidth.value = props.width
+    svgHeight.value = props.height
+    draw()
+})
+const data: ConsistentData<svgData> = [
+    { age: -1, study: 0, game: 0, coding: 0, social: 100 },
+    { age: 5, study: 50, game: 20, coding: 0, social: 30 },
+    { age: 10, study: 40, game: 30, coding: 0, social: 30 },
+    { age: 15, study: 35, game: 25, coding: 0, social: 40 },
+    { age: 20, study: 30, game: 20, coding: 30, social: 20 },
+    { age: 25, study: 20, game: 10, coding: 50, social: 20 },
+    { age: 28, study: 20, game: 10, coding: 50, social: 20 },
+];
+const colorList = ["#66CCFF", "#39C5BB", "#FF6600", "#9999ff"]
+const draw = () => {
+    const keys = Object.keys(data[0]).filter((key) => key !== "age")
+    const stack = d3.stack().keys(keys);
     const stackedData = stack(data);
-    console.log(stackedData);
 
-    const width = 650;
-    const height = 400;
-
+    const width = svgWidth.value
+    const height = svgHeight.value;
+    console.log(width, height);
+    const fontSize = width < 600 ? "1em" : "1.5em"
+    console.log(fontSize);
     const x = d3
         .scaleLinear()
-        .domain([-1, 30])
+        .domain([-1, 28])
         .range([0, width]);
 
     const y = d3
@@ -37,15 +52,12 @@ onMounted(() => {
 
     const color = d3
         .scaleOrdinal()
-        .domain(["study", "game", "coding", "music", "social"])
-        .range(["#66CCFF", "#ADD8E6", "#90EE90", "#87CEFA", "#32CD32"]);
+        .domain(keys)
+        .range(colorList);
 
     const area = d3
         .area()
-        .x((d) => {
-            console.log(d);
-            return x(d.data.age)
-        })
+        .x((d) => x(d.data.age))
         .y0((d) => y(d[0]))
         .y1((d) => y(d[1]))
         .curve(d3.curveBasis);
@@ -53,7 +65,7 @@ onMounted(() => {
     const svg = d3.select(chartRef.value);
     svg.selectAll("*").remove();
 
-       // 画流图
+    // 画流图
     const groups = svg
         .append("g")
         .selectAll("g")
@@ -80,46 +92,40 @@ onMounted(() => {
         })
         .attr("fill", (d) => color(d.key) as string);
 
-       // 添加文本标签
-       function getMaxValueIndex(series: any[]) {
-        let maxValue = -Infinity;
-        let maxIndex = -1;
-        console.log(series);
-        series.forEach((d: number[], i: number) => {
-            const value = d[1] - d[0];
-            
-            if (value > maxValue) {
-                maxValue = value;
-                maxIndex = i;
-            }
-        });
-        return maxIndex;
+    // 添加文本标签
+    function getCentroid(series: any[]) {
+        const upper = series.map((d: any) => [x(d.data.age), y(d[1])]);
+        const lower = series.slice().reverse().map((d: any) => [x(d.data.age), y(d[0])]);
+        const polygon = [...upper, ...lower];
+        return d3.polygonCentroid(polygon as [number, number][]);
     }
+    // groups
+    //     .append("path")
+    //     .attr("class", "polygon")
+    //     .attr("d", (d) => {
+    //         const upper = d.map((point: any) => [x(point.data.age), y(point[1])]);
+    //         const lower = d.slice().reverse().map((point: any) => [x(point.data.age), y(point[0])]);
+    //         const polygon = [...upper, ...lower];
+    //         return `M${polygon.join("L")}Z`;
+    //     })
+    //     .attr("stroke", "#000")
+    //     .attr("stroke-width", 1)
+    //     .attr("fill", "none");
 
     groups
         .append("text")
         .attr("transform", function (d) {
-            const maxIndex = getMaxValueIndex(d);
-            const midAge = d[maxIndex].data.age;
-            const midY = (y(d[maxIndex][0]) + y(d[maxIndex][1])) / 2;
-
-            const xMidAge = x(midAge);
-            const buffer = 20; 
-
-            if (xMidAge < buffer || xMidAge > width - buffer) {
-                const startAge = d[0].data.age;
-                const endAge = d[d.length - 1].data.age;
-                const midAgeAdjusted = (startAge + endAge) / 2;
-                return `translate(${x(midAgeAdjusted)}, ${midY})`;
-            } else {
-                return `translate(${xMidAge}, ${midY})`;
-            }
+            const [centroidX, centroidY] = getCentroid(d);
+            return `translate(${centroidX}, ${centroidY})`;
         })
-        .attr("dy", ".35em")
         .attr("text-anchor", "middle")
-        .attr("fill", "#000")
-        .text((d) => d.key);
-
+        .attr("font-size", fontSize)
+        .attr("font-family", "ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji")
+        .attr("fill", "#334155")
+        .text((d) => capitalizeFirstLetter(d.key));
+    function capitalizeFirstLetter(string: string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
     // 纵坐标（20% 间隔, 不显示 0% 和 100%）
     svg.append("g")
         .selectAll("g")
@@ -132,6 +138,7 @@ onMounted(() => {
                 .attr("y", y(d) + 5)
                 .attr("x", 15)
                 .attr("fill", "#333")
+                .attr("font-size", fontSize)
                 .attr("text-anchor", "start")
                 .text(`${d}%`);
 
@@ -156,6 +163,7 @@ onMounted(() => {
                 .attr("x", x(d))
                 .attr("y", -15)
                 .attr("fill", "#333")
+                .attr("font-size", fontSize)
                 .attr("text-anchor", "middle")
                 .text(d);
 
@@ -166,15 +174,19 @@ onMounted(() => {
                 .attr("y2", -10) // 辅助线结束点（与坐标轴对齐）
                 .attr("stroke", "#000") // 辅助线颜色
         });
+}
+onMounted(() => {
+    if (!chartRef.value) return;
+    draw()
 });
 </script>
 
 <template>
-    <svg ref="chartRef" width="600" height="400"></svg>
+    <svg ref="chartRef" :width="svgWidth" :height="svgHeight"></svg>
 </template>
 
 <style scoped>
-svg{
+svg {
     border-radius: .5rem;
 }
 </style>

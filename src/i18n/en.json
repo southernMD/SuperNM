@@ -36,5 +36,28 @@
         "views":"views",
         "description":"I'm not only playing games. I treat video games as an experiment. Through games, I study behavioral psychology, product design, decision making, and aesthetics.",
         "topicsTitle":"Topics I touched or planed to touch:"
+    },
+    "chart":{
+        "stackChart":{
+            "title":"Time",
+            "description":"This is how I spend my time. My biggest hobby is learning, as I am curious about almost everything."
+        },
+        "space":{
+            "title":"Space",
+            "description":"This is my travel footprint. And currently I'm living in ",
+            "livePlace":"Suzhou, China"
+        },
+        "radar":[
+            {
+                "title": "Movie",
+                "description": "The statistics of Movies I have watched.",
+                "image": "https://placehold.co/600x400/png"
+              },
+              {
+                "title": "Album",
+                "description": "The statistics of Music Albums I have listened.",
+                "image": "https://placehold.co/600x400/png"
+              }
+        ]
     }
 }
