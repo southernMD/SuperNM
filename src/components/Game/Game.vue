@@ -3,36 +3,8 @@ import type { MaskCard } from '@/types/Work';
 import { onMounted, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 const { t } = useI18n();
-const gameJamGames: (MaskCard & { minHeight?: string })[] = [
-  {
-    msg: '/10.jpg',
-    overlayDes: 'Miku',
-    minHeight: '200px'
-  },
-  {
-    msg: '/12.jpg',
-    overlayDes: '古明地恋',
-    minHeight: '200px'
-  },
-  {
-    msg: '/16.jpg',
-    overlayDes: '魔理沙 & 辉针城',
-    minHeight: '200px'
-  }
-];
-
-const companyGames: (MaskCard & { minHeight?: string })[] = [
-  {
-    msg: '/436.jpg',
-    overlayDes: '物部布都 & 苏我屠自古',
-    minHeight: '300px'
-  },
-  {
-    msg: '/541.jpg',
-    overlayDes: '洩矢诹访子',
-    minHeight: 'auto'
-  }
-];
+import { data } from '@/data'
+const { row,cloumn } = data.game
 
 const gameBoxRef = ref()
 onMounted(() => {
@@ -56,7 +28,7 @@ onMounted(() => {
         <span class="highlight">{{ t("gameList.left.highTitle") }}</span><span>{{t("gameList.left.title")}}</span>
       </h2>
       <div class="game-grid game-jam-grid">
-        <MaskCard v-for="game in gameJamGames" :overlay-des="game.overlayDes" padding="0px" animation="levelMove">
+        <MaskCard v-for="game in cloumn" :overlay-des="game.overlayDes" padding="0px" animation="levelMove">
           <div :style="{
             'background-image': `url(${game.msg})`,
             'min-height': `${game.minHeight}`
@@ -70,7 +42,7 @@ onMounted(() => {
           <span class="highlight">{{t("gameList.right.highTitle")}}</span> <span>{{t("gameList.right.title")}}</span>
         </h2>
         <div class="game-grid company-grid">
-          <MaskCard v-for="game in companyGames" :overlay-des="game.overlayDes" padding="0px" animation="levelMove">
+          <MaskCard v-for="game in row" :overlay-des="game.overlayDes" padding="0px" animation="levelMove">
             <div :style="{
               'background-image': `url(${game.msg})`,
               'min-height': `${game.minHeight}`

@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { watch } from 'vue'
 //监听窗口宽度
-import type { WorkCard } from '@/types/Work';
 import { onMounted, ref } from 'vue'
 import { useWindowSize } from '@vueuse/core'
 import CreateWorkCardBox from './CreateWorkCardBox.vue'
+import { data } from '@/data'
+const { workCard:experiences } = data
 const { width} = useWindowSize()
 const outBoxWidth = ref("auto")
 const inBoxWidth = ref("auto")
@@ -21,54 +22,6 @@ watch(() => width.value, () => {
     }
 }, { immediate: true })
 
-
-const experiences: WorkCard[] = [
-    {
-        title: 'Microsoft',
-        background: '#2b3647',
-        description: 'I have worked at Microsoft for 4 years, developed multiple products.',
-        descriptionOrder: -1,
-        icon: `<i class="iconfont icon-bilibili"></i>`,
-        descriptionColor: 'white',
-        FDirection: 'column',
-        maskCard: [
-            {
-                overlayDes: "Lorem ipsum dolor sit amet consectetu",
-                msg: {
-                    title: 'helloWorld',
-                    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. '
-                }
-            },
-        ],
-        children: [
-            {
-                title: 'Microsoft WebView2',
-                background: 'white',
-                description: 'A WebView control based on Chromium for Windows and Mac. The Mac version isn\'t released yet.',
-                descriptionOrder: 1,
-                icon: `<i class="iconfont icon-bilibili"></i>`,
-                descriptionColor: 'black',
-                children: [],
-                maskCard: [
-                    {
-                        overlayDes: "Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
-                        msg: {
-                            title: 'helloWorld',
-                            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. '
-                        }
-                    },
-                    {
-                        overlayDes: "Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
-                        msg: {
-                            title: 'helloWorld',
-                            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. '
-                        }
-                    },
-                ],
-            },
-        ],
-    }
-];
 const workCardBoxRef = ref<HTMLElement>()
 onMounted(() => {
     const intersectionObserver = new IntersectionObserver((entries) => {

@@ -4,7 +4,9 @@ import { computed } from 'vue';
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n';
 const { t } = useI18n();
-const followersNNumber = 789222
+import { data } from '@/data'
+const { followersNNumber, topCards, bottomCards } = data.carousel
+
 const followers = ref(0)
 const followersRef = ref()
 const followersFormat = computed(() => {
@@ -56,40 +58,7 @@ onMounted(() => {
   intersectionObserver.observe(bgRef.value);
 })
 
-const topCards = [
-  {
-    platform: 'Bilibili',
-    followers: 14392,
-    description: 'I\'m not only playing games. I treat video games as an experiment. Through games, I study behavioral psychology, product design, decision making, and aesthetics.',
-    gradient: 'linear-gradient(45deg, #FB7299, #FC9DB6)',
-    link:"#"
-  },
 
-];
-
-const bottomCards = [
-  {
-    platform: 'YouTube',
-    followers: 17000,
-    description: 'Gaming and tech tutorials with in-depth analysis and guides.',
-    gradient: 'linear-gradient(45deg, #FF0000, #282828)',
-    link:"#"
-  },
-  {
-    platform: 'Discord',
-    followers: 5000,
-    description: 'Join our community of tech enthusiasts and gamers.',
-    gradient: 'linear-gradient(45deg, #7289DA, #424549)',
-    link:"#"
-  },
-  {
-    platform: 'Instagram',
-    followers: 8500,
-    description: 'Daily tech insights and behind-the-scenes moments.',
-    gradient: 'linear-gradient(45deg, #833AB4, #FD1D1D)',
-    link:"#"
-  }
-];
 </script>
 
 <template>

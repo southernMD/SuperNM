@@ -2,6 +2,8 @@
 import { onMounted, ref } from "vue";
 import * as d3 from "d3";
 import { watch } from "vue";
+import { data } from '@/data'
+const { timeChart,colorList } = data.chart
 
 const props = withDefaults(defineProps<{
     width: number
@@ -19,20 +21,10 @@ watch(()=>props.width, () => {
     svgHeight.value = props.height
     draw()
 })
-const data: ConsistentData<svgData> = [
-    { age: -1, study: 0, game: 0, coding: 0, social: 100 },
-    { age: 5, study: 50, game: 20, coding: 0, social: 30 },
-    { age: 10, study: 40, game: 30, coding: 0, social: 30 },
-    { age: 15, study: 35, game: 25, coding: 0, social: 40 },
-    { age: 20, study: 30, game: 20, coding: 30, social: 20 },
-    { age: 25, study: 20, game: 10, coding: 50, social: 20 },
-    { age: 28, study: 20, game: 10, coding: 50, social: 20 },
-];
-const colorList = ["#66CCFF", "#39C5BB", "#FF6600", "#9999ff"]
 const draw = () => {
-    const keys = Object.keys(data[0]).filter((key) => key !== "age")
+    const keys = Object.keys(timeChart[0]).filter((key) => key !== "age")
     const stack = d3.stack().keys(keys);
-    const stackedData = stack(data);
+    const stackedData = stack(timeChart);
 
     const width = svgWidth.value
     const height = svgHeight.value;

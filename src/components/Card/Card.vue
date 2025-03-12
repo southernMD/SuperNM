@@ -1,19 +1,8 @@
 <script setup lang="ts">
 import type { CardRotateElement, CardRotateElementStringValue } from '@/types/Card';
 import { onMounted, ref, type Ref } from 'vue';
-
-
-// 定义 canvas 类型
-const labels: CardRotateElementStringValue[] = [
-  { value: '超', scale: 5 },
-  { value: '级', scale: 5 },
-  { value: '大', scale: 2 }, // 文本
-  { value: '牛' },
-  { value: '马' },
-  // 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg', // 图片链接
-  // 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iIj4KICA8Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI1MCIgc3R5bGU9ImZpbGw6cmVkOyIvPgo8L3N2Zz4K', // Base64 SVG
-  { value: '/vite.svg', scale: 1.5 }
-]; // 提取 labels 到外部
+import { data } from '@/data';
+const { labels } = data.card
 
 const labelsLoad: Array<CardRotateElement> = []
 const drawCircles = (canvas: HTMLCanvasElement, rotationAngle: number) => {

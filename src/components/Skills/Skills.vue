@@ -7,7 +7,7 @@
                 <h3>{{ programmingLanguage.name }}</h3>
                 <div class="progress-bar">
                     <div class="progress" :style="{
-                        width: programmingLanguage.randomNumber + '%',
+                        width: programmingLanguage.percentage + '%',
                         backgroundColor: progressColors[index]
                     }">
                     </div>
@@ -21,61 +21,10 @@
 import { computed, onMounted, ref } from 'vue'
 import { useWindowSize } from '@vueuse/core'
 import { watch } from 'vue'
-
+import { data } from '@/data'
+const { programmingLanguages } = data
 const { width } = useWindowSize()
 const skillsBoxRef = ref()
-const programmingLanguages = [
-    {
-        name: "Python",
-        sentence: "吾乃万法之王，简洁如风，却掌控万物之脉络，数据与算法皆为我所驱使！",
-        randomNumber: Math.floor(Math.random() * 101)
-    },
-    {
-        name: "JavaScript",
-        sentence: "我是网页的守护者，前端与后端的双生之魂，浏览器皆为我之领域，万物皆可异步！",
-        randomNumber: Math.floor(Math.random() * 101)
-    },
-    {
-        name: "Java",
-        sentence: "跨平台之霸主，虚拟机为我之铠甲，一次编写，随处运行，众生皆需臣服！",
-        randomNumber: Math.floor(Math.random() * 101)
-    },
-    {
-        name: "C++",
-        sentence: "我是速度与力量的化身，内存为我之战场，指针如剑，直指核心，无人能敌！",
-        randomNumber: Math.floor(Math.random() * 101)
-    },
-    {
-        name: "C#",
-        sentence: "微软之刃，Unity之魂，游戏与企业的双生王者，.NET之力为我所用！",
-        randomNumber: Math.floor(Math.random() * 101)
-    },
-    {
-        name: "PHP",
-        sentence: "我是Web的古老守护者，虽被世人轻视，却依然屹立不倒，服务器为我之领域！",
-        randomNumber: Math.floor(Math.random() * 101)
-    },
-    {
-        name: "Ruby",
-        sentence: "优雅如诗，简洁如画，Rails为我之翼，开发者皆为我之信徒！",
-        randomNumber: Math.floor(Math.random() * 101)
-    },
-    {
-        name: "Go",
-        sentence: "我是并发之王者，轻量如羽，却迅捷如雷，云原生世界为我所掌控！",
-        randomNumber: Math.floor(Math.random() * 101)
-    },
-    {
-        name: "Swift",
-        sentence: "苹果之刃，iOS与macOS的守护者，简洁与安全并存，未来由我书写！",
-        randomNumber: Math.floor(Math.random() * 101)
-    },
-    {
-        name: "Kotlin",
-        sentence: "我是Java的继承者，Android的新王，简洁与强大并存，旧时代的终结者！",
-        randomNumber: Math.floor(Math.random() * 101)
-    }
-];
 
 // 生成随机颜色
 const generateRandomColor = () => {

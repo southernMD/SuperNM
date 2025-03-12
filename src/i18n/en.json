@@ -1,63 +1,127 @@
 {
     "name": "southernMD",
-    "topNav":["one","two","three","four"],
-    "messageBox":{
-        "list":[
-            {"title":"title1","hash":"#"},
-            {"title":"title2","hash":"#"},
-            {"title":"title3","hash":"#"},
-            {"title":"title4","hash":"#"},
-            {"title":"title5","hash":"#"}
-        ]
-    },
-    "carouselList":{
-        "ms1":"I share stories about #NM, #superNM, #bigNM and #superBigNM on the Internet.",
-        "ms2":{
-            "numberBefore":"My stories have attracted",
-            "numberEnd":"followers."
+    "topNav": [
+        {
+            "title":"zero",
+            "hash": "#zero"
         },
-        "ms3":"There are countless ways to tell a story about the world, this is mine.",
-        "ms4":"Storytelling is my passion because I've been profoundly shaped by the stories of others.",
-        "ms5":"Discover my inspirations here."
-    },
-    "gameList":{
-        "left":{
-            "highTitle":"Games ",
-            "title":"I made in GameJam"
+        {
+            "title": "one",
+            "hash": "#one"
         },
-        "right":{
-            "highTitle":"Games ",
-            "title":"I made in Companies"
+        {
+            "title": "two",
+            "hash": "#two"
+        },
+        {
+            "title": "three",
+            "hash": "#three"
+        },
+        {
+            "title": "four",
+            "hash": "#four"
+        },
+        {
+            "title": "five",
+            "hash": "#five"
+        }
+    ],
+    "messageBox": [
+        {
+            "title": "title1",
+            "hash": "#"
+        },
+        {
+            "title": "title2",
+            "hash": "#"
+        },
+        {
+            "title": "title3",
+            "hash": "#"
+        },
+        {
+            "title": "title4",
+            "hash": "#"
+        },
+        {
+            "title": "title5",
+            "hash": "#"
+        }
+    ],
+    "carouselList": {
+        "ms1": "I share stories about #NM, #superNM, #bigNM and #superBigNM on the Internet.",
+        "ms2": {
+            "numberBefore": "My stories have attracted",
+            "numberEnd": "followers."
+        },
+        "ms3": "There are countless ways to tell a story about the world, this is mine.",
+        "ms4": "Storytelling is my passion because I've been profoundly shaped by the stories of others.",
+        "ms5": "Discover my inspirations here."
+    },
+    "gameList": {
+        "left": {
+            "highTitle": "Games ",
+            "title": "I made in GameJam"
+        },
+        "right": {
+            "highTitle": "Games ",
+            "title": "I made in Companies"
         }
     },
-    "video":{
-        "title":"Game related Video Essay Creato",
-        "followers":"followers",
-        "views":"views",
-        "description":"I'm not only playing games. I treat video games as an experiment. Through games, I study behavioral psychology, product design, decision making, and aesthetics.",
-        "topicsTitle":"Topics I touched or planed to touch:"
+    "video": {
+        "title": "Game related Video Essay Creato",
+        "followers": "followers",
+        "views": "views",
+        "description": "I'm not only playing games. I treat video games as an experiment. Through games, I study behavioral psychology, product design, decision making, and aesthetics.",
+        "topicsTitle": "Topics I touched or planed to touch:"
     },
-    "chart":{
-        "stackChart":{
-            "title":"Time",
-            "description":"This is how I spend my time. My biggest hobby is learning, as I am curious about almost everything."
+    "chart": {
+        "stackChart": {
+            "title": "Time",
+            "description": "This is how I spend my time. My biggest hobby is learning, as I am curious about almost everything."
         },
-        "space":{
-            "title":"Space",
-            "description":"This is my travel footprint. And currently I'm living in ",
-            "livePlace":"Suzhou, China"
+        "space": {
+            "title": "Space",
+            "description": "This is my travel footprint. And currently I'm living in ",
+            "livePlace": "Suzhou, China"
         },
-        "radar":[
+        "radar": [
             {
                 "title": "Movie",
                 "description": "The statistics of Movies I have watched.",
-                "image": "https://placehold.co/600x400/png"
-              },
-              {
+                "data":[
+                    { "axis": "unknow", "value": 11 },
+                    { "axis": "unknow", "value": 11 },
+                    { "axis": "unknow", "value": 11 },
+                    { "axis": "unknow", "value": 11 },
+                    { "axis": "unknow", "value": 11 },
+                    { "axis": "unknow", "value": 11 },
+                    { "axis": "unknow", "value": 15 },
+                    { "axis": "unknow", "value":22}
+                ]
+            },
+            {
                 "title": "Album",
                 "description": "The statistics of Music Albums I have listened.",
-                "image": "https://placehold.co/600x400/png"
-              }
+                "data":[
+                    { "axis": "unknow", "value": 11 },
+                    { "axis": "unknow", "value": 11 },
+                    { "axis": "unknow", "value": 11 },
+                    { "axis": "unknow", "value": 11 },
+                    { "axis": "unknow", "value": 11 },
+                    { "axis": "unknow", "value": 11 },
+                    { "axis": "unknow", "value": 15 },
+                    { "axis": "unknow", "value":22}
+                ]
+            }
         ]
-    }
+    },
+    "books": {
+        "title": "Reading List",
+        "description": "I have read 150+ books over last five years.<br> Here are books I highly recommended!"
+    },
+    "footerMessage": {
+        "msg": "その花の名を飾ろう"
+    },
+    "bothName": "southernMD a.k.a 南山有壶酒"
 }

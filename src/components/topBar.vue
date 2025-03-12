@@ -2,6 +2,8 @@
 import { ref } from 'vue';
 import { useI18n} from 'vue-i18n';
 import { useLanguageStore } from '@/store/index'; 
+import { data } from '@/data';
+const { github,x,bilibili,twitch } = data.topBarLink
 const { locale,t,tm } = useI18n();
 const drawerVisible = ref(false);
 const isDesktop = ref(window.innerWidth > 768); // 判断是否为桌面设备
@@ -18,6 +20,11 @@ function changeLanguage() {
   languageStore.toggleLanguage();
   locale.value = locale.value === 'zh' ? 'en' : 'zh';
 }
+
+const goHash = (hash:string)=>{
+  window.location.href = hash
+  drawerVisible.value = false
+}
 </script>
 
 <template>
@@ -25,24 +32,24 @@ function changeLanguage() {
     <div class="nav-links">
       <a class="logo">{{ t("name") }}</a>
       <div v-for="(item, index) in tm('topNav')" :key="index">
-        <a href="#">{{ item }}</a>
+        <a :href="item.hash">{{ item.title }}</a>
       </div>
     </div>
     <i class="icon-caidan iconfont" style="cursor: pointer;" v-if="!isDesktop" @click="drawerVisible = true"></i>
     <el-drawer v-model="drawerVisible" :title="t('name')" size="50%" append-to-body direction="ltr" :show-close="false">
       <div class="drawer-content">
         <div class="nav-list-phone">
-          <div class="nav" v-for="(item, index) in tm('topNav')" :key="index">
-            <span>{{ item }}</span>
+          <div class="nav" v-for="(item, index) in tm('topNav')" :key="index" @click="goHash(item.hash)">
+            <a>{{ item.title }}</a>
           </div>
         </div>
       </div>
     </el-drawer>
     <div class="social-icons">
-      <a href="#"><i class="iconfont icon-github"></i></a>
-      <a href="#"><i class="iconfont icon-tuite"></i></a>
-      <a href="#"><i class="iconfont icon-bilibili"></i></a>
-      <a href="#"><i class="iconfont icon-twitch"></i></a>
+      <a :href="github" target="_blank"><i class="iconfont icon-github"></i></a>
+      <a :href="x" target="_blank"><i class="iconfont icon-tuite"></i></a>
+      <a :href="bilibili" target="_blank"><i class="iconfont icon-bilibili"></i></a>
+      <a :href="twitch" target="_blank"><i class="iconfont icon-twitch"></i></a>
       <a href="javascript:;">
         <i class="iconfont icon-a-zhongyingwenqiehuanzhong" v-if="!languageStore.isZhCN" @click="changeLanguage()"></i>
         <i class="iconfont icon-a-zhongyingwenqiehuanying" v-else @click="changeLanguage()"></i>

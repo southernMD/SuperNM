@@ -1,63 +1,127 @@
 {
     "name": "南山有壶酒",
-    "topNav":["一号","二号","三号","四号"],
-    "messageBox":{
-        "list":[
-            {"title":"标题1","hash":"#"},
-            {"title":"标题2","hash":"#"},
-            {"title":"标题3","hash":"#"},
-            {"title":"标题4","hash":"#"},
-            {"title":"标题5","hash":"#"}
-        ]
-    },
-    "carouselList":{
-        "ms1":"我分享我的故事关于#牛马，#超级牛马，#大牛马 和 #超级大牛马在网络上。",
-        "ms2":{
-            "numberBefore":"我的故事已经吸引了",
-            "numberEnd":"个粉丝。"
+    "topNav": [
+        {
+            "title":"零号",
+            "hash": "#zero"
         },
-        "ms3":"关于这个世界，有无数种讲述故事的方式，而这是我的方式。",
-        "ms4":"讲故事是我的热情所在，因为我深受他人故事的影响。",
-        "ms5":"在这里探索我的灵感来源。"
-    },
-    "gameList":{
-        "left":{
-            "highTitle":"游戏 ",
-            "title":"我在 GameJam 中制作的"
+        {
+            "title": "一号",
+            "hash": "#one"
         },
-        "right":{
-            "highTitle":"游戏 ",
-            "title":"我在 Companies 中制作的"
+        {
+            "title": "二号",
+            "hash": "#two"
+        },
+        {
+            "title": "三号",
+            "hash": "#three"
+        },
+        {
+            "title": "四号",
+            "hash": "#four"
+        },
+        {
+            "title": "五号",
+            "hash": "#five"
+        }
+    ],
+    "messageBox": [
+        {
+            "title": "标题1",
+            "hash": "#"
+        },
+        {
+            "title": "标题2",
+            "hash": "#"
+        },
+        {
+            "title": "标题3",
+            "hash": "#"
+        },
+        {
+            "title": "标题4",
+            "hash": "#"
+        },
+        {
+            "title": "标题5",
+            "hash": "#"
+        }
+    ],
+    "carouselList": {
+        "ms1": "我分享我的故事关于#牛马，#超级牛马，#大牛马 和 #超级大牛马在网络上。",
+        "ms2": {
+            "numberBefore": "我的故事已经吸引了",
+            "numberEnd": "个粉丝。"
+        },
+        "ms3": "关于这个世界，有无数种讲述故事的方式，而这是我的方式。",
+        "ms4": "讲故事是我的热情所在，因为我深受他人故事的影响。",
+        "ms5": "在这里探索我的灵感来源。"
+    },
+    "gameList": {
+        "left": {
+            "highTitle": "游戏 ",
+            "title": "我在 GameJam 中制作的"
+        },
+        "right": {
+            "highTitle": "游戏 ",
+            "title": "我在 Companies 中制作的"
         }
     },
-    "video":{
-        "title":"游戏相关视频评论创作者",
-        "followers":"粉丝",
-        "views":"播放量",
-        "description":"我可不只是玩游戏。我把电子游戏当作一种实验。通过游戏，我研究行为心理学、产品设计、决策制定以及美学。",
-        "topicsTitle":"我触及或计划触及的话题："
+    "video": {
+        "title": "游戏相关视频评论创作者",
+        "followers": "粉丝",
+        "views": "播放量",
+        "description": "我可不只是玩游戏。我把电子游戏当作一种实验。通过游戏，我研究行为心理学、产品设计、决策制定以及美学。",
+        "topicsTitle": "我触及或计划触及的话题："
     },
-    "chart":{
-        "stackChart":{
-            "title":"时间",
-            "description":"这就是我打发时间的方式。我最大的爱好是学习，因为我对几乎所有的事物都充满好奇。"
+    "chart": {
+        "stackChart": {
+            "title": "时间",
+            "description": "这就是我打发时间的方式。我最大的爱好是学习，因为我对几乎所有的事物都充满好奇。"
         },
-        "space":{
-            "title":"处所",
-            "description":"这是我的旅行足迹。目前我住在",
-            "livePlace":"中国苏州"
+        "space": {
+            "title": "处所",
+            "description": "这是我的旅行足迹。目前我住在",
+            "livePlace": "中国苏州"
         },
-        "radar":[
+        "radar": [
             {
                 "title": "电影",
                 "description": "统计我已经看过的电影类型",
-                "image": "https://placehold.co/600x400/png"
-              },
-              {
+                "data":[
+                    { "axis": "不知道", "value": 11 },
+                    { "axis": "不知道", "value": 11 },
+                    { "axis": "不知道", "value": 11 },
+                    { "axis": "不知道", "value": 11 },
+                    { "axis": "不知道", "value": 11 },
+                    { "axis": "不知道", "value": 11 },
+                    { "axis": "不知道", "value": 15 },
+                    { "axis": "不知道", "value":22}
+                ]
+            },
+            {
                 "title": "专辑",
                 "description": "统计我已经听过的专辑类型",
-                "image": "https://placehold.co/600x400/png"
-              }
+                "data":[
+                    { "axis": "不知道", "value": 11 },
+                    { "axis": "不知道", "value": 11 },
+                    { "axis": "不知道", "value": 11 },
+                    { "axis": "不知道", "value": 11 },
+                    { "axis": "不知道", "value": 11 },
+                    { "axis": "不知道", "value": 11 },
+                    { "axis": "不知道", "value": 15 },
+                    { "axis": "不知道", "value":22}
+                ]
+            }
         ]
-    }
+    },
+    "books": {
+        "title": "读书清单",
+        "description": "在过去的五年里，我读了150多本书。<br>我强烈推荐这些书！"
+    },
+    "footerMessage": {
+        "msg": "就以幻灯花之名为其点缀"
+    },
+    "bothName": "southernMD a.k.a 南山有壶酒"
 }

@@ -57,7 +57,7 @@ onMounted(() => {
       </div>
       <div class="bootom">
         <StatsCard v-for="stat in tm('chart.radar')" :key="stat.title" v-bind="stat" v-element-size="onResizeRadar">
-          <Radar :width="radarWidth" :height="400"></Radar>
+          <Radar :width="radarWidth" :height="400" :data="stat.data"></Radar>
         </StatsCard>
       </div>
     </div>
@@ -123,9 +123,18 @@ onMounted(() => {
 }
 
 @media (max-width: 1024px) {
-
-  .stats-grid {
-    grid-template-columns: 1fr;
-  }
+    .code-section {
+      display: none;
+    }
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+    .top{
+      grid-template-columns: 1fr;
+    }
+    .bootom{
+      grid-template-columns: 1fr;
+    }
 }
+
 </style>

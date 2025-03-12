@@ -2,38 +2,8 @@
 import { ref, onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
 const { t } = useI18n();
-const videos = [
-    {
-        msg: '/10.jpg',
-        title: '真实抽象',
-        overlayDes:" elit. Vel, laudantium inventore ab sit quia aut. Non, accusamus cupiditate ex voluptas tempore nemo illum porro, aliquam reprehenderit, fugit suscipit. Dolores, ipsa. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel, laudantium inventore ab sit quia aut. Non, accusamus cupiditate ex voluptas tempore nemo illum porro, aliquam reprehenderit, fugit suscipit. Dolores, ipsa. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel, laudantium inventore ab sit quia aut. Non, accusamus cupiditate ex voluptas tempore nemo illum porro, aliquam reprehenderit, fugit suscipit. Dolores, ipsa. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel, laudantium invento"
-    },
-    {
-        msg: '/10.jpg',
-        title: '伪随机',
-        overlayDes:" elit. Vel, laudantium inventore ab sit quia aut. Non, accusamus cupiditate ex voluptas tempore nemo illum porro, aliquam reprehenderit, fugit suscipit. Dolores, ipsa. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel, laudantium inventore ab sit quia aut. Non, accusamus cupiditate ex voluptas tempore nemo illum porro, aliquam reprehenderit, fugit suscipit. Dolores, ipsa. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel, laudantium inventore ab sit quia aut. Non, accusamus cupiditate ex voluptas tempore nemo illum porro, aliquam reprehenderit, fugit suscipit. Dolores, ipsa. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel, laudantium invento"
-    },
-    {
-        msg: '/10.jpg',
-        title: '神拉上级',
-        overlayDes:" elit. Vel, laudantium inventore ab sit quia aut. Non, accusamus cupiditate ex voluptas tempore nemo illum porro, aliquam reprehenderit, fugit suscipit. Dolores, ipsa. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel, laudantium inventore ab sit quia aut. Non, accusamus cupiditate ex voluptas tempore nemo illum porro, aliquam reprehenderit, fugit suscipit. Dolores, ipsa. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel, laudantium inventore ab sit quia aut. Non, accusamus cupiditate ex voluptas tempore nemo illum porro, aliquam reprehenderit, fugit suscipit. Dolores, ipsa. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel, laudantium invento"
-    },
-    {
-        msg: '/10.jpg',
-        title: '全网最全',
-        overlayDes:" elit. Vel, laudantium inventore ab sit quia aut. Non, accusamus cupiditate ex voluptas tempore nemo illum porro, aliquam reprehenderit, fugit suscipit. Dolores, ipsa. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel, laudantium inventore ab sit quia aut. Non, accusamus cupiditate ex voluptas tempore nemo illum porro, aliquam reprehenderit, fugit suscipit. Dolores, ipsa. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel, laudantium inventore ab sit quia aut. Non, accusamus cupiditate ex voluptas tempore nemo illum porro, aliquam reprehenderit, fugit suscipit. Dolores, ipsa. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel, laudantium invento"
-    },
-];
-
-const topics = [
-    {txt:'Skinner Box',link:"#"},
-    {txt:'MDA Framework',link:"#"},
-    {txt:'Risk & Return',link:"#"},
-    {txt:'Game Balance',link:"#"},
-    {txt:'Dynamic Adjustment',link:"#"},
-    {txt:'Emergent',link:"#"},
-    {txt:'Motivation Crowding',link:"#"}
-];
+import { data } from '@/data'
+const { videos,topics} = data.video
 
 const videoCreatorDetails ={
     avatar:"/avatar.png",
@@ -97,7 +67,7 @@ onMounted(() => {
                         animation="levelMove"
                         >
                         <div :style="{
-                            'background-image': `url(${video.msg})`,
+                            'background-image': `url(${video.cover})`,
                         }" class="img"></div>
                     </MaskCard>
                 </div>
@@ -210,16 +180,15 @@ onMounted(() => {
     grid-template-rows: repeat(2, minmax(0,1fr)); 
     gap: 24px;
 }
-@media (max-width: 640px) {
-  .videos-grid {
-    grid-template-columns: 1fr;  
-    grid-auto-rows: 1fr;     
-  }
-}
+
 
 @media (max-width: 1024px) {
     .content-grid {
         grid-template-columns: 1fr;
+    }
+    .videos-grid {
+        grid-template-columns: 1fr;  
+        grid-auto-rows: 1fr;     
     }
 }
 

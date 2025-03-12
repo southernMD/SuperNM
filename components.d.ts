@@ -8,6 +8,9 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    Book: typeof import('./src/components/Books/Book.vue')['default']
+    BookBox: typeof import('./src/components/Books/BookBox.vue')['default']
+    BookPhone: typeof import('./src/components/Books/BookPhone.vue')['default']
     C: typeof import('./src/components/Chart/C.vue')['default']
     Card: typeof import('./src/components/Card/Card.vue')['default']
     CarouselList: typeof import('./src/components/CarouselList/CarouselList.vue')['default']
@@ -16,6 +19,8 @@ declare module 'vue' {
     CreateWorkCardBox: typeof import('./src/components/Work/CreateWorkCardBox.vue')['default']
     ElDrawer: typeof import('element-plus/es')['ElDrawer']
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
+    Footer: typeof import('./src/components/Footer/Footer.vue')['default']
+    FooterMessage: typeof import('./src/components/Footer/FooterMessage.vue')['default']
     Game: typeof import('./src/components/Game/Game.vue')['default']
     MaskCard: typeof import('./src/components/MaskCard.vue')['default']
     MessageBox: typeof import('./src/components/Card/MessageBox.vue')['default']

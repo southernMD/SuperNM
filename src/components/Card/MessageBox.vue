@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { NameListOption, NameListSplictOption } from '@/types/Card';
+import type { NameListSplictOption } from '@/types/Card';
 import gsap from 'gsap'
 import VanillaTilt from 'vanilla-tilt';
 import { computed, type Ref, type VNode } from 'vue';
@@ -7,6 +7,9 @@ import { ref, onMounted } from 'vue'
 import { render, h } from 'vue'
 import { sleep } from '@/utils/sleep';
 import { useI18n } from "vue-i18n";
+import { data } from '@/data'
+const { nameList } = data.card
+
 const { tm } = useI18n();
 const card = ref();
 const des = ref();
@@ -15,11 +18,7 @@ const title = ref()
 const title2 = ref()
 const listItems = ref([]) as Ref<HTMLElement[]>; // 用于存储列表项的引用
 const userNameP = ref()
-const nameList: NameListOption[] = [
-    { name: '南山有壶酒'},
-    { name: 'southernMD'},
-    { name: "超级牛马人"}
-]
+
 const nameListLoad: Array<NameListSplictOption> = []
 const maxIndex = computed(() => {
     return nameListLoad.length - 1
@@ -138,7 +137,7 @@ const handleMouseLeave = () => {
             </div>
             <titile ref="title2">I'M a:</titile>
             <ul class="right-aligned-list">
-                <li v-for="(item, index) in tm('messageBox.list')" :key="index" ref="listItems">
+                <li v-for="(item, index) in tm('messageBox')" :key="index" ref="listItems">
                     <a :href="item.hash">{{ item.title }}</a>
                 </li>
             </ul>
