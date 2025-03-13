@@ -17,6 +17,7 @@ declare module 'vue' {
     Chart: typeof import('./src/components/Chart/Chart.vue')['default']
     ChartBox: typeof import('./src/components/Chart/ChartBox.vue')['default']
     CreateWorkCardBox: typeof import('./src/components/Work/CreateWorkCardBox.vue')['default']
+    Earth: typeof import('./src/components/Chart/Earth.vue')['default']
     ElDrawer: typeof import('element-plus/es')['ElDrawer']
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
     Footer: typeof import('./src/components/Footer/Footer.vue')['default']

@@ -4,15 +4,24 @@ const { t, tm } = useI18n();
 import { vElementSize } from '@vueuse/components'
 import { onMounted, ref } from 'vue';
 import { computed } from 'vue';
-import MapSVG from '@/assets/map.svg?component'
+import { useDevicePixelRatio } from '@vueuse/core'
+const { pixelRatio } = useDevicePixelRatio()
+
+// import MapSVG from '@/assets/map.svg?component'
 const svgWidth = ref(0)
 const svgHeight = computed(() => Math.ceil(svgWidth.value * 0.7))
 const radarWidth = ref(0)
+const earthWidth = ref(0)
+const earthHeight = computed(() => Math.ceil(earthWidth.value * 0.7))
 const onResize = ({ width }: { width: number, height: number }) => {
   svgWidth.value = width - 64
 }
 const onResizeRadar = ({ width }: { width: number, height: number }) => {
   radarWidth.value = width - 64
+}
+
+const onResizeEarth = ({ width }: { width: number, height: number }) => {
+  earthWidth.value = width - 64
 }
 
 const ChartCardBoxRef = ref<HTMLElement>()
@@ -42,10 +51,12 @@ onMounted(() => {
           <Chart :width="svgWidth" :height="svgHeight"></Chart>
         </StatsCard>
         <div class="right">
-          <StatsCard :title="t('chart.space.title')"
+          <StatsCard 
+            v-element-size="onResizeEarth"
+            :title="t('chart.space.title')"
             :description="t('chart.space.description') + t('chart.space.livePlace')">
-            <div style="transform: scale(1.5) translateX(-30px);">
-              <MapSVG></MapSVG>
+            <div >
+              <Earth :width="earthWidth" :height="earthHeight" :pixelRatio="pixelRatio"></Earth>
             </div>
           </StatsCard>
           <div class="code-section">
