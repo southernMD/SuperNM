@@ -10,7 +10,7 @@ const { followersNNumber, topCards, bottomCards } = data.carousel
 const followers = ref(0)
 const followersRef = ref()
 const followersFormat = computed(() => {
-  return followers.value.toLocaleString()
+  return followers.value === followersNNumber ? "N/A" : followers.value.toLocaleString()
 })
 const bgRef = ref()
 onMounted(() => {

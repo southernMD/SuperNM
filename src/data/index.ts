@@ -49,13 +49,11 @@ export const data: {
             { value: '/vite.svg', scale: 1.5 }
         ],
         nameList: [
-            { name: '南山有壶酒' },
-            { name: 'southernMD' },
-            { name: "超级牛马人" }
+            { name: 'AuraLious' }
         ]
     },
     carousel: {
-        followersNNumber: 789222,
+        followersNNumber: 1,
         topCards: [
             {
                 platform: 'Bilibili',
